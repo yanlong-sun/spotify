@@ -1,6 +1,6 @@
 <template>
   <div class="mainContainer">
-    <div class="items">
+    <div class="items" @scroll="handleScoll">
       <div class="headLine">{{ $t('joinTheBand') }}</div>
       <button class="btn-allJobs">{{ $t('exploreAllJobs') }}</button>
       <div class="searchBox">
@@ -15,7 +15,22 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+const showNavBar = ref(true)
+const lastScrollPos = ref(0)
+const handleScoll = () => {
+  console.log(1)
+  const curScrollLoc = window.scrollY
+  console.log(curScrollLoc)
+  if (curScrollLoc > lastScrollPos.value + 20) {
+    showNavBar.value = false
+  } else {
+    showNavBar.value = true
+  }
+  lastScrollPos.value = curScrollLoc
+}
+</script>
 
 <style lang="less" scoped>
 .mainContainer {
@@ -96,6 +111,12 @@
         border: none;
         font-size: 28px;
         background-color: #ffffff;
+        outline: 1px solid #ff4632;
+      }
+      .btn-search:hover {
+        background-color: #ff4632;
+        outline: 1px solid #ffffff;
+        transition: all 0.2s;
       }
     }
   }

@@ -2,6 +2,7 @@
   <div id="app">
     <nav-bar class="navBar" />
     <main-page class="mainPage" />
+    <main-page class="mainPage" />
   </div>
 </template>
 
